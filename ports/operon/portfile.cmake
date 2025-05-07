@@ -1,9 +1,11 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO heal-research/operon
-    REF 2c1edf616dc51c8a6eb2ff214bb63d4766b28064
-    SHA512 e6cc0efe0c11bc95163c36c0ba9b95e3bf44dbf113112b23539ce1a0b76e4ecb7f38575c43a6c4d6583ae7ad95824f9b8931594c6db268d0669ce0fce7771080
+    REF 2b00acdc76828ff5e3342811790f57c8d0c130dd
+    SHA512 0654b9bfb025de20c79e27a1ff52c477396b1ad58cfd799743256120b665ea4034349b0c858ee15c747f9564b4e5fc2db2d6d16fe267f12ef88067ce956429e3
     HEAD_REF main
+    PATCHES
+        add-msvc-support.patch
 )
 
 include("${VCPKG_ROOT_DIR}/ports/vcpkg-cmake/vcpkg_cmake_build.cmake")
@@ -20,17 +22,19 @@ vcpkg_configure_cmake(
   OPTIONS
         -DBUILD_TESTING=OFF
         -DBUILD_EXAMPLES=OFF
-        -DBUILD_SHARED_LIBS=${OPERON_SHARED_LIBS}
+        -DBUILD_SHARED_LIBS=OFF
         -DBUILD_CLI_PROGRAMS=OFF
         -DUSE_OPENLIBM=OFF
         -DUSE_SINGLE_PRECISION=ON
+  MAYBE_UNUSED_VARIABLES
+        BUILD_TESTING
+        USE_OPENLIBM
 )
 vcpkg_cmake_install()
-vcpkg_cmake_config_fixup(PACKAGE_NAME operon CONFIG_PATH lib/cmake/operon DO_NOT_DELETE_PARENT_CONFIG_PATH)
+vcpkg_cmake_config_fixup(PACKAGE_NAME operon DO_NOT_DELETE_PARENT_CONFIG_PATH)
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include"
-                    "${CURRENT_PACKAGES_DIR}/debug/share"
-                    "${CURRENT_PACKAGES_DIR}/lib")
+                    "${CURRENT_PACKAGES_DIR}/debug/share")
 
 file(
   INSTALL "${SOURCE_PATH}/LICENSE"

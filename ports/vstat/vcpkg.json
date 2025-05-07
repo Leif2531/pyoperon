@@ -5,6 +5,7 @@
     "dependencies": [
         {
             "name": "vectorclass"
-        }
+        },
+        "eve"
     ]
 }
