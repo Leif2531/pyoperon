@@ -1,0 +1,51 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 307f12d..8befa75 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -206,7 +206,7 @@ target_compile_features(operon_operon PUBLIC cxx_std_17)
+ set_target_properties(operon_operon PROPERTIES POSITION_INDEPENDENT_CODE ${BUILD_SHARED_LIBS})
+ 
+ if(MSVC)
+-    target_compile_options(operon_operon PRIVATE "/std:c++latest")
++    target_compile_options(operon_operon PRIVATE "/std:c++17")
+ else()
+     target_link_options(operon_operon PRIVATE "-Wl,--no-undefined")
+ endif()
+diff --git a/cli/CMakeLists.txt b/cli/CMakeLists.txt
+index 4335d8c..88172fc 100644
+--- a/cli/CMakeLists.txt
++++ b/cli/CMakeLists.txt
+@@ -22,7 +22,7 @@ function(add_operon_cli NAME)
+     target_compile_features(${NAME} PRIVATE cxx_std_17)
+ 
+     if(MSVC)
+-        target_compile_options(${NAME} PRIVATE "/std:c++latest")
++        target_compile_options(${NAME} PRIVATE "/std:c++17")
+     else()
+         target_link_options(${NAME} PRIVATE "-Wl,--no-undefined")
+     endif()
+diff --git a/source/core/version.cpp b/source/core/version.cpp
+index be664c5..2aa5b0d 100644
+--- a/source/core/version.cpp
++++ b/source/core/version.cpp
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: MIT
+ // SPDX-FileCopyrightText: Copyright 2019-2022 Heal Research
+ 
++#include <iterator>
+ #include "buildinfo.hpp"
+ #include "operon/core/version.hpp"
+ 
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+index dff1c07..721d8ab 100644
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -35,7 +35,7 @@ target_compile_features(operon_test PRIVATE cxx_std_17)
+ target_include_directories(operon_test PRIVATE ${PROJECT_SOURCE_DIR}/source/thirdparty)
+ 
+ if(MSVC)
+-    target_compile_options(operon_test PUBLIC "/std:c++latest")
++    target_compile_options(operon_test PUBLIC "/std:c++17")
+     target_link_options(operon_test PUBLIC "/bigobj")
+ else()
+     target_link_options(operon_test PUBLIC "-Wl,--no-undefined")
