@@ -7,6 +7,7 @@ __pycache__/
 cmake/open-cpp-coverage.cmake
 cmake-build-*/
 prefix/
+vcpkg_installed/
 CMakeLists.txt.user
 CMakeUserPresets.json
 project-include-after.cmake
