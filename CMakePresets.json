@@ -87,6 +87,21 @@
                 "CXX_WARNINGS": "-Wall -Wextra -pedantic -Wno-zero-length-array -Wno-deprecated-anon-enum-enum-conversion",
                 "CXX_OPT": "-fsized-deallocation -fno-math-errno"
             }
+        },
+        {
+            "name": "build-linux-vcpkg",
+            "generator": "Unix Makefiles",
+            "hidden": false,
+            "inherits": ["cpp-std", "cpp-build"],
+            "environment": {
+                "CXX_WARNINGS": "-Wall -Wextra -pedantic -Wno-zero-length-array -Wno-deprecated-anon-enum-enum-conversion",
+                "CXX_OPT": "-fsized-deallocation -fno-math-errno -march=x86-64-v3"
+            },
+            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+            "cacheVariables": {
+                "VCPKG_TARGET_TRIPLET": "x64-linux",
+                "VCPKG_OVERLAY_PORTS": "${sourceDir}/ports"
+            }
         }
     ]
 }

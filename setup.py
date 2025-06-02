@@ -3,7 +3,7 @@ import platform
 
 build_preset = ''
 if platform.system() == 'Linux':
-    build_preset = 'build-linux'
+    build_preset = 'build-linux-vcpkg'
 elif platform.system() == 'Darwin':
     build_preset = 'build-osx'
 
