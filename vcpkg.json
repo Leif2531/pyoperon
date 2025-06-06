@@ -6,7 +6,6 @@
         "ceres",
         "eigen3",
         "fast-float",
-        "nanobind",
         "operon",
         "pkgconf",
         "pratt-parser",

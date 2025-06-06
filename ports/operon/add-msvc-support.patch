@@ -1,5 +1,5 @@
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index ca62fff..3fe5482 100644
+﻿diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ca62fff..643ecbe 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -268,7 +268,7 @@ endif()
@@ -7,12 +7,12 @@ index ca62fff..3fe5482 100644
 
  if(MSVC)
 -    target_compile_options(operon_operon PRIVATE "/std:c++latest")
-+    target_compile_options(operon_operon PRIVATE "/std:c++latest" "/bigobj")
++    target_compile_options(operon_operon PRIVATE "/bigobj")
  else()
      if (UNIX AND NOT APPLE)
          target_link_options(operon_operon PRIVATE "-Wl,--no-undefined")
 diff --git a/cli/CMakeLists.txt b/cli/CMakeLists.txt
-index f488a8a..c084a35 100644
+index f488a8a..353c84c 100644
 --- a/cli/CMakeLists.txt
 +++ b/cli/CMakeLists.txt
 @@ -26,7 +26,7 @@ function(add_operon_cli NAME)
@@ -20,22 +20,22 @@ index f488a8a..c084a35 100644
 
      if(MSVC)
 -        target_compile_options(${NAME} PRIVATE "/std:c++latest")
-+        target_compile_options(${NAME} PRIVATE "/std:c++latest" "/bigobj")
++        target_compile_options(${NAME} PRIVATE "/bigobj")
      else()
          if (UNIX AND NOT APPLE)
              target_link_options(${NAME} PRIVATE "-Wl,--no-undefined")
 diff --git a/include/operon/optimizer/likelihood/gaussian_likelihood.hpp b/include/operon/optimizer/likelihood/gaussian_likelihood.hpp
-index d1f2e98..95f2af0 100644
+index d1f2e98..9db3ec8 100644
 --- a/include/operon/optimizer/likelihood/gaussian_likelihood.hpp
 +++ b/include/operon/optimizer/likelihood/gaussian_likelihood.hpp
-@@ -7,6 +7,7 @@
+@@ -6,6 +6,7 @@
+ 
  #include <array>
  #include <functional>
- #include <limits>
 +#include <random>
+ #include <limits>
 
  #include "operon/core/concepts.hpp"
- #include "operon/core/types.hpp"
 diff --git a/include/operon/optimizer/likelihood/poisson_likelihood.hpp b/include/operon/optimizer/likelihood/poisson_likelihood.hpp
 index b3e8827..90032da 100644
 --- a/include/operon/optimizer/likelihood/poisson_likelihood.hpp
@@ -89,7 +89,7 @@ index e067f47..ebecf6b 100644
              if (lo > hi) { ++done; continue; }
 
 diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
-index 58b4fda..d9da2c0 100644
+index 58b4fda..a7ef31b 100644
 --- a/test/CMakeLists.txt
 +++ b/test/CMakeLists.txt
 @@ -44,7 +44,7 @@ set_target_properties(operon_test PROPERTIES
@@ -97,7 +97,7 @@ index 58b4fda..d9da2c0 100644
 
  if(MSVC)
 -    target_compile_options(operon_test PUBLIC "/std:c++latest")
-+    target_compile_options(operon_test PUBLIC "/std:c++latest" "/bigobj")
++    target_compile_options(operon_test PUBLIC "/bigobj")
  else()
      if (UNIX AND NOT APPLE)
          target_link_options(operon_test PUBLIC "-Wl,--no-undefined")

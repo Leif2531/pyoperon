@@ -64,10 +64,11 @@
         {
             "name": "build-windows",
             "hidden": false,
-            "toolchainFile": "$env{VCPKG_ROOT}\\scripts\\buildsystems\\vcpkg.cmake",
+            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
             "cacheVariables": {
-                "VCPKG_TARGET_TRIPLET": "x64-windows",
-                "VCPKG_OVERLAY_PORTS": "${sourceDir}\\ports"
+                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded",
+                "VCPKG_TARGET_TRIPLET": "x64-windows-static",
+                "VCPKG_OVERLAY_PORTS": "${sourceDir}/ports"
             }
         },
         {
